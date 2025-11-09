@@ -1,5 +1,5 @@
 
-# Kashphool: Community Bloom Tracker (React App)
+# Kashphool
 This is a standard create-react-app project.
 
 ## 🚀 Getting Started
