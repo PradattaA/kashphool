@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/kashphool/static/css/main.b36f342f.css",
-    "main.js": "/kashphool/static/js/main.c49b203e.js",
+    "main.css": "/kashphool/static/css/main.3445b141.css",
+    "main.js": "/kashphool/static/js/main.e925e90a.js",
     "static/js/453.269888fa.chunk.js": "/kashphool/static/js/453.269888fa.chunk.js",
     "index.html": "/kashphool/index.html",
-    "main.b36f342f.css.map": "/kashphool/static/css/main.b36f342f.css.map",
-    "main.c49b203e.js.map": "/kashphool/static/js/main.c49b203e.js.map",
+    "main.3445b141.css.map": "/kashphool/static/css/main.3445b141.css.map",
+    "main.e925e90a.js.map": "/kashphool/static/js/main.e925e90a.js.map",
     "453.269888fa.chunk.js.map": "/kashphool/static/js/453.269888fa.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b36f342f.css",
-    "static/js/main.c49b203e.js"
+    "static/css/main.3445b141.css",
+    "static/js/main.e925e90a.js"
   ]
 }
