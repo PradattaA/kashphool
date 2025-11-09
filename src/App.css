@@ -901,3 +901,20 @@
     display: flex;
   }
 }
+
+@media (max-width: 600px) {
+  .hero {
+    height: 38vh;
+    min-height: 220px;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+  }
+  .hero-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero-image img {
+    max-height: 190px;
+    width: auto;
+  }
+}
