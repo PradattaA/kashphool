@@ -1,9 +1,29 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './App.css';
 
 function App() {
   const publicUrl = process.env.PUBLIC_URL || '';
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
+
+  useEffect(() => {
+      if (!menuOpen) return;
+      function handleClickOutside(e) {
+        if (
+          menuRef.current &&
+          !menuRef.current.contains(e.target) &&
+          hamburgerRef.current &&
+          !hamburgerRef.current.contains(e.target)
+        ) {
+          setMenuOpen(false);
+        }
+      }
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [menuOpen]);
   
   // Helper function to parse event dates and calculate days
   const parseEventDate = (dateString) => {
@@ -114,11 +134,21 @@ function App() {
               <span className="logo-subtitle">North Kent Bengali Association</span>
             </div>
           </div>
-          <ul className="nav-menu">
-            <li><a href="#about">About</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
+          <button className="hamburger"
+            ref={hamburgerRef}
+            aria-label="Toggle menu"
+            onClick={() => setMenuOpen(!menuOpen)}>
+                <span className="bar"></span>
+                <span className="bar"></span>
+                <span className="bar"></span>
+          </button>
+          <ul
+            className={`nav-menu${menuOpen ? ' open' : ''}`}
+            ref={menuRef}>
+                <li><a href="#about">About</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
       </nav>
