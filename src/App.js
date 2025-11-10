@@ -368,7 +368,9 @@ function App() {
             }}
             aria-label="Previous image"
           >
-            ‹
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                <polyline points="18,6 10,14 18,22" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
           </button>
           <button 
             className="lightbox-nav lightbox-next" 
@@ -378,7 +380,9 @@ function App() {
             }}
             aria-label="Next image"
           >
-            ›
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                <polyline points="10,6 18,14 10,22" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
           </button>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
             <img 
