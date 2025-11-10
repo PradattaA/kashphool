@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import ContactUs from './ContactUs';
+import EventModal from './EventModal';
 import './App.css';
 
 function App() {
@@ -9,6 +10,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const hamburgerRef = useRef(null);
+
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
       if (!menuOpen) return;
@@ -25,7 +28,7 @@ function App() {
       document.addEventListener('mousedown', handleClickOutside);
       return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [menuOpen]);
-  
+
   // Helper function to parse event dates and calculate days
   const parseEventDate = (dateString) => {
     if (dateString.includes(' - ')) {
@@ -67,7 +70,9 @@ function App() {
       date: "January 23, 2026",
       time: "10:00 AM - 8:00 PM",
       location: "Elite Venue, Dartford",
-      description: "Join us for the annual Saraswati Puja, a celebration of the goddess Saraswati, the goddess of knowledge and music."
+      description: "Join us for the annual Saraswati Puja, a celebration of the goddess Saraswati, the goddess of knowledge and music.",
+      venueLink: "https://maps.google.com/?q=Elite+Venue+Dartford",
+      coordinates: { lat: 51.41729019237036, lng: 0.3769888296721462 }
     },
     {
       id: 2,
@@ -75,7 +80,9 @@ function App() {
       date: "October 17, 2026 - October 21, 2026",
       time: "12:00 PM - 8:00 PM",
       location: "Elite Venue, Dartford",
-      description: "Join us for the annual Durga Puja, a celebration of the goddess Durga, the goddess of power and strength."
+      description: "Join us for the annual Durga Puja, a celebration of the goddess Durga, the goddess of power and strength.",
+      venueLink: "https://maps.google.com/?q=Elite+Venue+Dartford",
+      coordinates: { lat: 51.41729019237036, lng: 0.3769888296721462 }
     }
   ];
 
@@ -98,13 +105,13 @@ function App() {
   };
 
   const nextImage = () => {
-    setSelectedImageIndex((prevIndex) => 
+    setSelectedImageIndex((prevIndex) =>
       prevIndex < galleryImages.length - 1 ? prevIndex + 1 : 0
     );
   };
 
   const prevImage = () => {
-    setSelectedImageIndex((prevIndex) => 
+    setSelectedImageIndex((prevIndex) =>
       prevIndex > 0 ? prevIndex - 1 : galleryImages.length - 1
     );
   };
@@ -252,20 +259,20 @@ function App() {
           <div className="about-content">
             <div className="about-text">
               <p>
-                Kashphool is an Indian Bengali Association based in North Kent, dedicated to preserving 
-                and celebrating our rich cultural heritage. We are a vibrant community organization that 
-                brings together Bengali families and friends to honor our traditions and create lasting 
+                Kashphool is an Indian Bengali Association based in North Kent, dedicated to preserving
+                and celebrating our rich cultural heritage. We are a vibrant community organization that
+                brings together Bengali families and friends to honor our traditions and create lasting
                 connections.
               </p>
               <p>
-                Established in 2025, Kashphool organizes various Hindu festivals and community events 
-                throughout the year. Our mission is to keep our cultural traditions alive while building 
-                a strong, supportive community in North Kent. We celebrated our first Durga Puja in 2025, 
+                Established in 2025, Kashphool organizes various Hindu festivals and community events
+                throughout the year. Our mission is to keep our cultural traditions alive while building
+                a strong, supportive community in North Kent. We celebrated our first Durga Puja in 2025,
                 marking a significant milestone in our journey.
               </p>
               <p>
-                Through our events and celebrations, we aim to foster a sense of belonging, share our 
-                cultural values with future generations, and create a welcoming space for all members 
+                Through our events and celebrations, we aim to foster a sense of belonging, share our
+                cultural values with future generations, and create a welcoming space for all members
                 of our community. Join us as we continue to grow and celebrate our shared heritage together.
               </p>
             </div>
@@ -283,9 +290,13 @@ function App() {
           <div className="events-grid">
             {upcomingEvents.map(event => {
               const eventDate = parseEventDate(event.date);
-              
+
               return (
-                <div key={event.id} className="event-card">
+                <div
+                  key={event.id}
+                  className="event-card"
+                  onClick={() => setSelectedEvent(event)}
+                >
                   <div className="event-date">
                     {eventDate.isMultiDay ? (
                       <>
@@ -325,6 +336,16 @@ function App() {
             })}
           </div>
         </div>
+        {selectedEvent && (
+          <div className="event-modal-overlay" onClick={() => setSelectedEvent(null)}>
+            <div onClick={e => e.stopPropagation()}>
+              <EventModal
+                event={selectedEvent}
+                onClose={() => setSelectedEvent(null)}
+              />
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Gallery Section */}
@@ -334,8 +355,8 @@ function App() {
           <p className="section-subtitle">Memories from our past events</p>
           <div className="gallery-grid">
             {galleryImages.map((image, index) => (
-              <div 
-                key={image.id} 
+              <div
+                key={image.id}
                 className="gallery-item"
                 onClick={() => openLightbox(index)}
               >
@@ -351,8 +372,8 @@ function App() {
 
       {/* Lightbox Modal */}
       {selectedImageIndex !== null && (
-        <div 
-          className="lightbox-overlay" 
+        <div
+          className="lightbox-overlay"
           onClick={closeLightbox}
           onKeyDown={handleKeyDown}
           tabIndex={0}
@@ -360,8 +381,8 @@ function App() {
           <button className="lightbox-close" onClick={closeLightbox} aria-label="Close">
             ×
           </button>
-          <button 
-            className="lightbox-nav lightbox-prev" 
+          <button
+            className="lightbox-nav lightbox-prev"
             onClick={(e) => {
               e.stopPropagation();
               prevImage();
@@ -372,8 +393,8 @@ function App() {
                 <polyline points="18,6 10,14 18,22" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
           </button>
-          <button 
-            className="lightbox-nav lightbox-next" 
+          <button
+            className="lightbox-nav lightbox-next"
             onClick={(e) => {
               e.stopPropagation();
               nextImage();
@@ -385,8 +406,8 @@ function App() {
               </svg>
           </button>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img 
-              src={galleryImages[selectedImageIndex].src} 
+            <img
+              src={galleryImages[selectedImageIndex].src}
               alt={galleryImages[selectedImageIndex].alt}
             />
             <div className="lightbox-caption">
