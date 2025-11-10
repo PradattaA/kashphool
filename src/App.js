@@ -58,7 +58,7 @@ function App() {
     }
   };
 
-  // Sample event data - replace with your actual events
+  // Events data
   const upcomingEvents = [
     {
       id: 1,
@@ -78,15 +78,14 @@ function App() {
     }
   ];
 
-  // Gallery images - add your photos to public/gallery/ folder
+  // Gallery images - add photos to public/gallery/ folder
   const galleryImages = [
-    { id: 1, src: `${publicUrl}/gallery/2025_1.jpg`, alt: "Event Photo 1" },
-    { id: 2, src: `${publicUrl}/gallery/2025_2.jpg`, alt: "Event Photo 2" },
-    { id: 3, src: `${publicUrl}/gallery/2025_3.jpg`, alt: "Event Photo 3" },
-    { id: 4, src: `${publicUrl}/gallery/2025_4.jpg`, alt: "Event Photo 4" },
-    { id: 5, src: `${publicUrl}/gallery/2025_5.jpg`, alt: "Event Photo 5" },
-    { id: 6, src: `${publicUrl}/gallery/2025_6.jpg`, alt: "Event Photo 6" },
-    // Add more photos as needed
+    { id: 1, src: `${publicUrl}/gallery/2025_1.jpg`, alt: "Durga Puja 2025" },
+    { id: 2, src: `${publicUrl}/gallery/2025_2.jpg`, alt: "Durga Puja 2025" },
+    { id: 3, src: `${publicUrl}/gallery/2025_3.jpg`, alt: "Durga Puja 2025" },
+    { id: 4, src: `${publicUrl}/gallery/2025_4.jpg`, alt: "Durga Puja 2025" },
+    { id: 5, src: `${publicUrl}/gallery/2025_5.jpg`, alt: "Durga Puja 2025" },
+    { id: 6, src: `${publicUrl}/gallery/2025_6.jpg`, alt: "Durga Puja 2025" },
   ];
 
   const openLightbox = (index) => {
@@ -128,11 +127,13 @@ function App() {
       <nav className="navbar">
         <div className="nav-container">
           <div className="logo-container">
-            <img src={`${publicUrl}/kashphool_logo.png`} className="logo" alt="Kashphool Logo" />
-            <div className="logo-text-container">
-              <span className="logo-text">Kashphool</span>
-              <span className="logo-subtitle">North Kent Bengali Association</span>
-            </div>
+           <a href="" className="logo-link" aria-label="Home">
+                <img src={`${publicUrl}/kashphool_logo.png`} className="logo" alt="Kashphool Logo" />
+                <div className="logo-text-container">
+                  <span className="logo-text">Kashphool</span>
+                  <span className="logo-subtitle">North Kent Bengali Association</span>
+                </div>
+            </a>
           </div>
           <button className="hamburger"
             ref={hamburgerRef}
@@ -339,6 +340,25 @@ function App() {
         </div>
       </section>
 
+      <section className="donate-section">
+        <div className="container">
+          <h2 className="donate-title">Support Us</h2>
+          <p className="donate-text">Your contribution helps us make a bigger impact. Thank you for your support!</p>
+          <a
+            className="donate-button"
+            href="https://pay.lopay.com/request/906de5de-220b-4f34-bc56-776c0993ec32" // Replace with your donation link
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="donate-icon" aria-hidden="true">
+                <img src={`${publicUrl}/lopay.png`} alt="Lopay" width={28} height={28} style={{borderRadius: 4}} />
+              </span>
+              Donate
+          </a>
+        </div>
+      </section>
+
+
       {/* Contact Section - Footer */}
       <footer id="contact" className="footer">
         <div className="container">
@@ -346,15 +366,23 @@ function App() {
             <div className="footer-section">
               <h3>Kashphool</h3>
               <p>North Kent Bengali Association</p>
+              <img
+                src={`${publicUrl}/kashphool_logo.png`}
+                alt="Kashphool Logo"
+                className="footer-logo"
+                style={{ width: 150, height: 150, marginTop: 8 }}
+              />
             </div>
             <div className="footer-section contact-section">
               <h4>Contact Us</h4>
-              <p>Email: kashphoolbengaliassociation@gmail.com</p>
+              <p>
+                  Email: <a href="mailto:kashphoolbengaliassociation@gmail.com">kashphoolbengaliassociation@gmail.com</a>
+                </p>
               <p><strong>Contact Persons:</strong></p>
-              <p>Kaushik Banerjee - 07522883400</p>
-              <p>Joy Sen - 07564060471</p>
-              <p>Abhishek Ghosh - 07706345368</p>
-              <p>Tanumoy Talukder - 07923133714</p>
+                <p>Kaushik Banerjee - <a href="tel:07522883400">07522883400</a></p>
+                <p>Joy Sen - <a href="tel:07564060471">07564060471</a></p>
+                <p>Abhishek Ghosh - <a href="tel:07706345368">07706345368</a></p>
+                <p>Tanumoy Talukder - <a href="tel:07923133714">07923133714</a></p>
             </div>
             <div className="footer-section social-section">
               <h4>Follow Us</h4>
