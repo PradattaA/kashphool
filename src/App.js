@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import ContactUs from './ContactUs';
 import './App.css';
 
 function App() {
@@ -146,10 +147,76 @@ function App() {
           <ul
             className={`nav-menu${menuOpen ? ' open' : ''}`}
             ref={menuRef}>
-                <li><a href="#about">About</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul className={`nav-menu${menuOpen ? ' open' : ''}`} ref={menuRef}>
+              <li>
+                <a href="#about">
+                  <span style={{verticalAlign: 'middle', marginRight: 6}}>
+                    {/* Info icon */}
+                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2"
+                      strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="12" y1="16" x2="12" y2="12"/>
+                      <line x1="12" y1="8" x2="12" y2="8"/>
+                    </svg>
+                  </span>
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#events">
+                  <span style={{verticalAlign: 'middle', marginRight: 6}}>
+                    {/* Calendar icon */}
+                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2"
+                      strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="18" rx="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                  </span>
+                  Events
+                </a>
+              </li>
+              <li>
+                <a href="#gallery">
+                  <span style={{verticalAlign: 'middle', marginRight: 6}}>
+                    {/* Image icon */}
+                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2"
+                      strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                      <rect x="3" y="3" width="18" height="18" rx="2"/>
+                      <circle cx="8.5" cy="8.5" r="1.5"/>
+                      <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                  </span>
+                  Gallery
+                </a>
+              </li>
+              <li>
+                <a href="#contact">
+                  <span style={{verticalAlign: 'middle', marginRight: 6}}>
+                    {/* Mail icon */}
+                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2"
+                      strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                      <rect x="2" y="4" width="20" height="16" rx="2"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                  </span>
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="#donate">
+                  <span style={{verticalAlign: 'middle', marginRight: 6}}>
+                    {/* Heart/Donate icon */}
+                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2"
+                      strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                      <path d="M12 21C12 21 4 13.5 4 8.5C4 5.42 6.42 3 9.5 3C11.24 3 12.91 3.81 14 5.08C15.09 3.81 16.76 3 18.5 3C21.58 3 24 5.42 24 8.5C24 13.5 16 21 16 21H12Z"/>
+                    </svg>
+                  </span>
+                  Donate
+                </a>
+              </li>
+            </ul>
           </ul>
         </div>
       </nav>
@@ -340,7 +407,14 @@ function App() {
         </div>
       </section>
 
-      <section className="donate-section">
+      <section id="contact" className="section message-section">
+        <div className="container">
+          <h2 className="section-title">Contact Us</h2>
+          <ContactUs />
+        </div>
+      </section>
+
+      <section id="donate" className="donate-section">
         <div className="container">
           <h2 className="donate-title">Support Us</h2>
           <p className="donate-text">Your contribution helps us make a bigger impact. Thank you for your support!</p>
@@ -360,7 +434,7 @@ function App() {
 
 
       {/* Contact Section - Footer */}
-      <footer id="contact" className="footer">
+      <footer id="footer" className="footer">
         <div className="container">
           <div className="footer-content">
             <div className="footer-section">
@@ -374,7 +448,7 @@ function App() {
               />
             </div>
             <div className="footer-section contact-section">
-              <h4>Contact Us</h4>
+              <h4>Contact</h4>
               <p>
                   Email: <a href="mailto:kashphoolbengaliassociation@gmail.com">kashphoolbengaliassociation@gmail.com</a>
                 </p>
